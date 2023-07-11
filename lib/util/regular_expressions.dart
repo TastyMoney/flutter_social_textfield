@@ -16,6 +16,8 @@ const _arabicLetters = '\u0621-\u064A';
 
 const _thaiLetters = '\u0E00-\u0E7F';
 
+const _chineseLetters = '\u4E00-\u9FFF';
+
 const _turkishLetters = 'ğüşıöçĞÜŞİÖÇ';
 
 const _vietnameseLetters = 'AĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴ';
@@ -27,6 +29,7 @@ final detectionContentLetters = _symbols +
     _numbers +
     _englishLetters +
     _japaneseLetters +
+    _chineseLetters +
     _koreanLetters +
     _spanishLetters +
     _arabicLetters +
@@ -59,6 +62,10 @@ final hashTagRegExp = RegExp(
 
 final atSignRegExp = RegExp(
   "(?!\\n)(?:^|\\s)([@]([$detectionContentLetters]+))",
+  multiLine: true,
+);
+final atStockRegExp = RegExp(
+  "(?!\\n)(?:^|\\s)([\$]([$detectionContentLetters]+))",
   multiLine: true,
 );
 

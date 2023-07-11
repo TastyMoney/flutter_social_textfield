@@ -33,11 +33,11 @@ class _DefaultControllerExampleScreenState extends State<DefaultControllerExampl
   void initState() {
     super.initState();
     _textEditingController = SocialTextEditingController()
-      ..text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut tellus elementum sagittis vitae et. Id velit ut tortor pretium viverra suspendisse. Massa placerat duis ultricies lacus sed. Placerat in egestas erat imperdiet sed euismod nisi. Velit scelerisque in dictum non consectetur. Massa id neque aliquam vestibulum morbi blandit. Purus sit amet volutpat consequat mauris nunc congue nisi. Ut diam quam nulla porttitor massa id. Sed faucibus turpis in eu mi. Rhoncus mattis rhoncus urna neque. Vel eros donec ac odio. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus. Lobortis elementum nibh tellus molestie nunc non blandit massa enim. Amet consectetur adipiscing elit duis tristique sollicitudin nibh sit amet."
+      ..text = "Lorem ipsum \$dolor @sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut tellus elementum sagittis vitae et. Id velit ut tortor pretium viverra suspendisse. Massa placerat duis ultricies lacus sed. Placerat in egestas erat imperdiet sed euismod nisi. Velit scelerisque in dictum non consectetur. Massa id neque aliquam vestibulum morbi blandit. Purus sit amet volutpat consequat mauris nunc congue nisi. Ut diam quam nulla porttitor massa id. Sed faucibus turpis in eu mi. Rhoncus mattis rhoncus urna neque. Vel eros donec ac odio. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus. Lobortis elementum nibh tellus molestie nunc non blandit massa enim. Amet consectetur adipiscing elit duis tristique sollicitudin nibh sit amet."
       ..setTextStyle(DetectedType.mention, TextStyle(color: Colors.purple,backgroundColor: Colors.purple.withAlpha(50)))
       ..setTextStyle(DetectedType.url, TextStyle(color: Colors.blue, decoration: TextDecoration.underline))
-      ..setTextStyle(DetectedType.hashtag, TextStyle(color: Colors.blue, fontWeight: FontWeight.w600));
-
+      ..setTextStyle(DetectedType.hashtag, TextStyle(color: Colors.blue, fontWeight: FontWeight.w600))
+    ..setTextStyle(DetectedType.stock, TextStyle(color: Colors.green,backgroundColor: Colors.green.withAlpha(50)));
     _streamSubscription = _textEditingController.subscribeToDetection(onDetectContent);
   }
 
@@ -81,10 +81,22 @@ class _DefaultControllerExampleScreenState extends State<DefaultControllerExampl
         detectionBuilders: {
           DetectedType.mention:(context)=>mentionContent(height),
           DetectedType.hashtag:(context)=>hashtagContent(height),
-          DetectedType.url:(context)=>urlContent(height)
+          DetectedType.url:(context)=>urlContent(height),
+          DetectedType.stock:(context)=>stockContent(height)
         },
       ),
     );
+  }
+  PreferredSize stockContent(double height){
+    return PreferredSize(
+      child: ListView.builder(itemBuilder: (context,index)=>
+          ListTile(
+            title: Text("\$stock_$index"),
+            onTap: (){
+              _textEditingController.replaceRange("\$stock_$index", lastDetection.range);
+            },
+          )),
+      preferredSize: Size.fromHeight(height),);
   }
 
   PreferredSize mentionContent(double height){
