@@ -88,7 +88,6 @@ class SocialTextEditingController extends TextEditingController{
   set value(TextEditingValue newValue) {
 
     if(newValue.selection.baseOffset >= newValue.text.length){
-      print("will add space");
       newValue = newValue
           .copyWith(
           text: newValue.text.trimRight() + " ",
